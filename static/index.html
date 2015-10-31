@@ -1,0 +1,35 @@
+{% load pipeline %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Document</title>
+	{% javascript 'libs' %}
+	{% stylesheet 'styles' %}
+</head>
+<body ng-app="blog">
+
+	<div class="blog-masthead">
+      <div class="container">
+        <nav class="blog-nav">
+          <a class="blog-nav-item active" ui-sref="posts">Стартова</a>
+          <a class="blog-nav-item" ui-sref="hello">Додати пост</a>
+          <a class="blog-nav-item" href="#">Про мене</a>
+        </nav>
+      </div>
+    </div>
+
+    <div class="container" ui-view>
+
+      
+
+    </div><!-- /.container -->
+
+    <footer class="blog-footer">
+      <p>By <a href="http://vk.com/sanlem">Vitaliy Franchook</a></p>
+    </footer>
+
+</body>
+</html>

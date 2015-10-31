@@ -38,7 +38,8 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'posts'
+    'posts',
+    'pipeline'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -57,7 +58,7 @@ ROOT_URLCONF = 'myblog.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'static')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -101,5 +102,45 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
+STATICFILES_STORAGE = 'pipeline.storage.PipelineCachedStorage'
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'pipeline.finders.PipelineFinder',
+)
+
+PIPELINE_ENABLED = False
+PIPELINE_JS_COMPRESSOR = None
+PIPELINE_CSS_COMPRESSOR = None
+
+PIPELINE_JS = {
+    'libs': {
+        'source_filenames': (
+          'bower_components/angular/angular.min.js',
+          'bower_components/angular-ui-router/release/angular-ui-router.min.js',
+          'bower_components/angular-resource/angular-resource.min.js',
+          'bower_components/angular-route/angular-route.min.js',
+          'bower_components/jquery/dist/jquery.min.js',
+          'js/libs/bootstrap.min.js',
+          'js/app/app.js'
+        ),
+        'output_filename': 'js/libs.js',
+    }
+}
+
+PIPELINE_CSS = {
+    # Project libraries.
+    'styles': {
+        'source_filenames': (   
+            'css/bootstrap.min.css',
+            'css/bootstrap-theme.min.css',
+            'css/main.css'
+        ),
+        # Compress passed libraries and have
+        # the output in`css/libs.min.css`.
+        'output_filename': 'css/styles.min.css',
+    }
+    # ...
+}
