@@ -124,7 +124,9 @@ PIPELINE_JS = {
           'bower_components/angular-route/angular-route.min.js',
           'bower_components/jquery/dist/jquery.min.js',
           'js/libs/bootstrap.min.js',
-          'js/app/app.js'
+          'js/app/app.js',
+          'js/app/controllers.js',
+          'js/app/resources.js'
         ),
         'output_filename': 'js/libs.js',
     }

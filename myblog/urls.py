@@ -23,6 +23,6 @@ router.register(r'posts', posts.views.PostViewset)
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^api/v1/', include(router.urls)),
+    url(r'^api/', include(router.urls)),
     url(r'^$', posts.views.index),
 ]

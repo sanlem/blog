@@ -1,8 +1,10 @@
 angular.module('blog', [
   'ui.router',
   'ngResource',
+  'blogControllers',
+  'blogResources'
 ])
-  .config(function ($interpolateProvider, $httpProvider, $resourceProvider, $stateProvider, $urlRouterProvider) {
+    .config(function ($interpolateProvider, $httpProvider, $resourceProvider, $stateProvider, $urlRouterProvider) {
     // Force angular to use square brackets for template tag
     // The alternative is using {% verbatim %}
     $interpolateProvider.startSymbol('[[').endSymbol(']]');
@@ -18,12 +20,13 @@ angular.module('blog', [
     //routing
     $urlRouterProvider.otherwise('/');
     $stateProvider
-      .state('posts', {
+      .state('posts-list', {
         url: '/',
         templateUrl: 'static/partials/posts.html',
+        controller: 'PostsCtrl'
       })
-      .state('hello', {
-      	url: '/hello',
-      	templateUrl: 'static/partials/hello.html',
+      .state('posts-new', {
+      	url: '/new_post',
+      	templateUrl: 'static/partials/new_post.html',
       })
 });
