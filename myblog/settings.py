@@ -25,9 +25,6 @@ SECRET_KEY = '2&&q77jc3t+qw9_p=lufs&4t%dxn#3%!$k&a=))cof0e)e)eur'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-import dj_database_url
-DATABASES['default'] =  dj_database_url.config()
-
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
@@ -90,6 +87,10 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+
+
+import dj_database_url
+DATABASES['default'] =  dj_database_url.config()
 
 
 # Internationalization
