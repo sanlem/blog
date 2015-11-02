@@ -2,7 +2,8 @@ angular.module('blog', [
   'ui.router',
   'ngResource',
   'blogControllers',
-  'blogResources'
+  'blogResources',
+  'blogDirectives'
 ])
     .config(function ($interpolateProvider, $httpProvider, $resourceProvider, $stateProvider, $urlRouterProvider) {
     // Force angular to use square brackets for template tag
@@ -28,5 +29,12 @@ angular.module('blog', [
       .state('posts-new', {
       	url: '/new_post',
       	templateUrl: 'static/partials/new_post.html',
+      })
+      .state('posts-retrieve', {
+        url: '/post/:id',
+        templateUrl: 'static/partials/retrieve.html',
+        controller: function($scope, $stateParams, Post){
+          $scope.post = Post.get({id: $stateParams.id})
+        }
       })
 });

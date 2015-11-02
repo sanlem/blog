@@ -126,7 +126,8 @@ PIPELINE_JS = {
           'js/libs/bootstrap.min.js',
           'js/app/app.js',
           'js/app/controllers.js',
-          'js/app/resources.js'
+          'js/app/resources.js',
+          'js/app/directives.js'
         ),
         'output_filename': 'js/libs.js',
     }
