@@ -17,7 +17,7 @@
 		<label>Автор</label>
 		<input type="text" ng-model="author" class="form-control" required>
 	</div>
-	<p class="bg-warning" ng-show="!addPost.$valid">Необхідно заповнити всі поля.</p>
+	<p class="bg-warning" ng-show="!addPostForm.$valid">Необхідно заповнити всі поля.</p>
 	[[ addPost.$valid ]]
 	<button type="button" class="btn btn-primary" ng-click="addPostForm.$valid && addPost(title, text, author)">Додати</button>
 </form>
