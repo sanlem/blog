@@ -25,4 +25,5 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^api/', include(router.urls)),
     url(r'^$', posts.views.index),
+    url(r'^rest-auth/', include('rest_auth.urls')),
 ]

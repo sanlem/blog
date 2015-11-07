@@ -43,7 +43,9 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'rest_framework',
     'posts',
-    'pipeline'
+    'pipeline',
+    'rest_framework.authtoken',
+    'rest_auth'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -89,8 +91,8 @@ DATABASES = {
 }
 
 
-import dj_database_url
-DATABASES['default'] =  dj_database_url.config()
+#import dj_database_url
+#DATABASES['default'] =  dj_database_url.config()
 
 
 # Internationalization
