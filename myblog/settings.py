@@ -45,7 +45,11 @@ INSTALLED_APPS = (
     'posts',
     'pipeline',
     'rest_framework.authtoken',
-    'rest_auth'
+    'rest_auth',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'rest_auth.registration',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -72,6 +76,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.request',
             ],
         },
     },
@@ -132,12 +137,15 @@ PIPELINE_JS = {
           'bower_components/angular-ui-router/release/angular-ui-router.min.js',
           'bower_components/angular-resource/angular-resource.min.js',
           'bower_components/angular-route/angular-route.min.js',
+          'bower_components/angular-cookies/angular-cookies.min.js',
+          'bower_components/angular-sanitize/angular-sanitize.min.js',
           'bower_components/jquery/dist/jquery.min.js',
           'js/libs/bootstrap.min.js',
           'js/app/app.js',
           'js/app/controllers.js',
           'js/app/resources.js',
-          'js/app/directives.js'
+          'js/app/directives.js',
+          'js/app/djangoAuth.js'
         ),
         'output_filename': 'js/libs.js',
     }
