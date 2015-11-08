@@ -91,6 +91,7 @@ angular.module('blog')
                     $cookies.token = data.key;
                 }
                 djangoAuth.authenticated = true;
+                console.log(data);
                 $rootScope.$broadcast("djangoAuth.logged_in", data);
             });
         },

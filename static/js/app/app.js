@@ -55,4 +55,24 @@ angular.module('blog', [
           }],
         }
       })
+      .state('register', {
+        url: '/register',
+        templateUrl: 'static/partials/register.html',
+        controller: 'RegisterCtrl',
+        resolve: {
+          authenticated: ['djangoAuth', function(djangoAuth){
+            return djangoAuth.authenticationStatus();
+          }],
+        }
+      })
+      .state('login', {
+        url: '/login',
+        templateUrl: 'static/partials/login.html',
+        controller: 'LoginCtrl',
+        resolve: {
+          authenticated: ['djangoAuth', function(djangoAuth){
+            return djangoAuth.authenticationStatus();
+          }],
+        }
+      })
 });

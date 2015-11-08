@@ -96,8 +96,8 @@ DATABASES = {
 }
 
 
-import dj_database_url
-DATABASES['default'] =  dj_database_url.config()
+#import dj_database_url
+#DATABASES['default'] =  dj_database_url.config()
 
 
 # Internationalization
@@ -113,6 +113,11 @@ USE_L10N = True
 
 USE_TZ = True
 
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.AllowAny',
+    )
+}
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
@@ -142,6 +147,7 @@ PIPELINE_JS = {
           'bower_components/jquery/dist/jquery.min.js',
           'js/libs/bootstrap.min.js',
           'js/app/app.js',
+          'js/app/validate.js',
           'js/app/controllers.js',
           'js/app/resources.js',
           'js/app/directives.js',
