@@ -75,4 +75,13 @@ angular.module('blog', [
           }],
         }
       })
+      .state('logout', {
+        url: '/logout',
+        controller: 'LogoutCtrl',
+        resolve: {
+          authenticated: ['djangoAuth', function(djangoAuth){
+            return djangoAuth.authenticationStatus();
+          }],
+        }
+      })
 });

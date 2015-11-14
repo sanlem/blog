@@ -37,19 +37,27 @@ angular.module('blogControllers', ['ui.router'])
     .controller('LoginCtrl', function ($scope, $location, djangoAuth, Validate) {
     $scope.model = {'username':'','password':''};
     $scope.complete = false;
+    var ctrl = this;
     $scope.login = function(formData){
       $scope.errors = [];
+      $scope.isAuthenticated = [];
       Validate.form_validation(formData,$scope.errors);
       if(!formData.$invalid){
         djangoAuth.login($scope.model.username, $scope.model.password)
         .then(function(data){
             // success case
-            alert('success!');
+            
             $location.path("/");
         },function(data){
             // error case
             $scope.errors = data;
         });
       }
+      $scope.complete = this.complete;
     }
+  })
+    .controller('LogoutCtrl', function ($scope, $location, djangoAuth) {
+      djangoAuth.logout();
+      $scope.isAuthenticated = false;
+      $location.path("/");
   });

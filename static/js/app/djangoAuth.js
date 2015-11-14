@@ -15,7 +15,7 @@ angular.module('blog')
         'request': function(args) {
             // Let's retrieve the token from the cookie, if available
             if($cookies.token){
-                $http.defaults.headers.common.Authorization = 'Token ' + $cookies.token;
+                $http.defaults.headers.common.Authorization = 'Token ' + $cookies.get("token");
             }
             // Continue
             params = args.params || {}
@@ -30,7 +30,7 @@ angular.module('blog')
                 url: url,
                 withCredentials: this.use_session,
                 method: method.toUpperCase(),
-                headers: {'X-CSRFToken': $cookies['csrftoken']},
+                headers: {'X-CSRFToken': $cookies.get('csrftoken')},
                 params: params,
                 data: data
             })
@@ -76,7 +76,7 @@ angular.module('blog')
                 'data' :data
             });
         },
-        'login': function(username,password){
+        'login': function(username,password,$scope){
             var djangoAuth = this;
             return this.request({
                 'method': "POST",
@@ -88,10 +88,11 @@ angular.module('blog')
             }).then(function(data){
                 if(!djangoAuth.use_session){
                     $http.defaults.headers.common.Authorization = 'Token ' + data.key;
-                    $cookies.token = data.key;
+                    $cookies.put("token", data.key);
                 }
-                djangoAuth.authenticated = true;
-                console.log(data);
+                console.log($cookies.get("token"));
+                this.authenticated = true;
+                //$scope.user = username;
                 $rootScope.$broadcast("djangoAuth.logged_in", data);
             });
         },
@@ -103,7 +104,8 @@ angular.module('blog')
             }).then(function(data){
                 delete $http.defaults.headers.common.Authorization;
                 delete $cookies.token;
-                djangoAuth.authenticated = false;
+                this.authenticated = false;
+                alert('logged out');
                 $rootScope.$broadcast("djangoAuth.logged_out");
             });
         },
@@ -162,7 +164,7 @@ angular.module('blog')
             // Set restrict to true to reject the promise if not logged in
             // Set to false or omit to resolve when status is known
             // Set force to true to ignore stored value and query API
-            restrict = restrict || false;
+            /*restrict = restrict || false;
             force = force || false;
             if(this.authPromise == null || force){
                 this.authPromise = this.request({
@@ -193,8 +195,8 @@ angular.module('blog')
                         getAuthStatus.resolve();
                     }
                 });
-            }
-            return getAuthStatus.promise;
+            }*/
+            return djangoAuth.authenticated;
         },
         'initialize': function(url, sessions){
             this.API_URL = url;
