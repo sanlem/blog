@@ -12,20 +12,19 @@
 <body ng-app="blog">
 
 	<div class="blog-masthead">
-      <div class="container">
+      <div class="container" ng-controller="AuthStatusCtrl">
         <nav class="blog-nav">
           <a class="blog-nav-item" ui-sref="posts-list" ui-sref-active="active">Стартова</a>
           <a class="blog-nav-item" ui-sref="posts-new" ui-sref-active="active">Додати пост</a>
           <a class="blog-nav-item" ui-sref="register" ui-sref-active="active">Реєстрація</a>
-          <a class="blog-nav-item" ng-show="!complete" ui-sref="login" ui-sref-active="active">Логін</a>
-          <a class="blog-nav-item" ng-show="complete" ui-sref="logout" ui-sref-active="active">Логаут</a>
+          <a class="blog-nav-item" ng-show="!authenticated" ui-sref="login" ui-sref-active="active">Логін</a>
+          <a class="blog-nav-item" ng-show="authenticated" ui-sref="logout" ui-sref-active="active">Логаут</a>
+          <a class="blog-nav-item navbar-right" ng-show="authenticated">Ви увійшли як [[ user ]]</a>
         </nav>
       </div>
-    </div>
-    <h2>[[ isAuthenticated ]]</h2>
+  </div>
+    
     <div class="container" ui-view>
-
-      
 
     </div><!-- /.container -->
 

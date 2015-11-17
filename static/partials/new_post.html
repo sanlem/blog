@@ -17,12 +17,7 @@
 		<textarea class="form-control" name="text" rows="3" ng-model="text" ng-minlength="1" ng-maxlength="400" required></textarea>
 	</div>
 	
-	<div class="form-group">
-		<label>Автор</label>
-		<p class="bg-danger" ng-show="addPostForm.author.$error.maxlength">Помилка: максимум 15 символів.</p>
-		<p class="bg-danger" ng-show="addPostForm.author.$error.minlength">Помилка: поле не може бути пустим.І</p>
-		<input type="text" name="author" ng-model="author" class="form-control" ng-minlength="1" ng-maxlength="15" required>
-	</div>
+	
 	<p class="bg-warning" ng-show="!addPostForm.$valid">Необхідно заповнити всі поля.</p>
 	<p class="bg-danger" ng-show="postSaveError">Помилка: [[ postSaveError ]]</p>
 	<button type="button" class="btn btn-primary" ng-click="addPostForm.$valid && addPost(title, text, author)">Додати</button>

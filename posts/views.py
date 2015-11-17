@@ -12,4 +12,7 @@ class PostViewset(viewsets.ModelViewSet):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
     permission_classes = ()
+
+    def perform_create(self, serializer):
+        serializer.save(author=self.request.user)
 # Create your views here.
